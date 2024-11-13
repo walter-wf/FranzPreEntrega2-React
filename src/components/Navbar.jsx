@@ -1,44 +1,53 @@
-
-import "bootstrap/dist/css/bootstrap.css";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import { Cartwidget } from "./Cartwidget";
 
-export const Navbar = () => {
+export const NavBar = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container justify-content-center">
-        <a className="navbar-brand" href="/">
-          ElectroLand
-        </a>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link" href="/">
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/electronica">
-              Electronica
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/computadoras">
-              Computadoras
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/celulares">
-              Celulares
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/consolas">
-              Consolas
-            </a>
-          </li>
-        </ul>
+    <Navbar bg="dark" variant="dark" className="navbar-dark">
+      <Container>
+        <Navbar.Brand href="/">Electro-Land</Navbar.Brand>
+        <Nav className="me-auto">
+          <NavLink
+            to="/category/Electronica"
+            className="nav-link"
+            onClick={() => handleCategoryClick("Electronica")}
+          >
+            Electronica
+          </NavLink>
+          <NavLink
+            to="/category/Celulares"
+            className="nav-link"
+            onClick={() => handleCategoryClick("Celulares")}
+          >
+            Celulares
+          </NavLink>
+          <NavLink
+            to="/category/Consolas"
+            className="nav-link"
+            onClick={() => handleCategoryClick("Consolas")}
+          >
+            Consolas
+          </NavLink>
+          <NavLink
+            to="/category/Notebooks"
+            className="nav-link"
+            onClick={() => handleCategoryClick("Notebooks")}
+          >
+            Notebooks
+          </NavLink>
+        </Nav>
         <Cartwidget />
-      </div>
-    </nav>
+      </Container>
+    </Navbar>
   );
 };
-
